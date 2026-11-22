@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ativa RM Tecnologia</title>
+<meta name="description" content="Ativa RM Tecnologia da Informação: consultoria, desenvolvimento e infraestrutura. IA generativa aplicada a sistemas corporativos legados, em Brasília/DF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: folha técnica. Coluna de 1120px, régua fina entre seções, rótulos em mono
+   como em uma ficha de engenharia. O único gesto forte é o documento marcado no topo. */
+:root {
+  --paper: #eef1f5;
+  --surface: #ffffff;
+  --ink: #0f1c2c;
+  --muted: #55647a;
+  --rule: #cdd5df;
+  --accent: #1b46d1;
+  --mark-a: #ffd666;
+  --mark-b: #9fe3c4;
+  --mark-c: #b9cdff;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0c141f;
+    --surface: #131e2c;
+    --ink: #e8edf4;
+    --muted: #94a3b8;
+    --rule: #263446;
+    --accent: #86a6ff;
+    --mark-a: #7a5c00;
+    --mark-b: #17604a;
+    --mark-c: #2a4190;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0c141f;
+  --surface: #131e2c;
+  --ink: #e8edf4;
+  --muted: #94a3b8;
+  --rule: #263446;
+  --accent: #86a6ff;
+  --mark-a: #7a5c00;
+  --mark-b: #17604a;
+  --mark-c: #2a4190;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 {
+  font-stretch: 118%;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 5.2vw, 4rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+}
+h2 {
+  font-stretch: 112%;
+  font-weight: 750;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -.015em;
+}
+h3 { font-stretch: 105%; font-weight: 700; font-size: 1.15rem; line-height: 1.25; }
+p { margin: 0; }
+
+/* Topo */
+header.top { border-bottom: 1px solid var(--rule); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 18px; }
+.brand { font-family: var(--display); font-stretch: 120%; font-weight: 850; font-size: 1.1rem; letter-spacing: .01em; color: var(--ink); text-decoration: none; }
+.brand span { color: var(--accent); }
+nav { display: flex; gap: 22px; flex-wrap: wrap; }
+nav a { color: var(--ink); text-decoration: none; font-size: .95rem; }
+nav a:hover { color: var(--accent); }
+
+/* Hero */
+.hero { padding: 64px 0 56px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.hero p.lead { margin-top: 22px; font-size: 1.15rem; max-width: 34em; color: var(--muted); }
+.actions { margin-top: 30px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-block; padding: 13px 22px; border-radius: 4px;
+  background: var(--accent); color: var(--paper); text-decoration: none;
+  font-weight: 600; font-size: 1rem;
+}
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+
+/* Documento marcado */
+.sheet {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 6px;
+  box-shadow: 0 18px 40px -24px rgba(15, 28, 44, .45);
+  overflow: hidden;
+}
+.sheet-head { display: flex; justify-content: space-between; gap: 12px; padding: 10px 16px; border-bottom: 1px solid var(--rule); }
+.doc { padding: 18px 18px 14px; font-size: .92rem; line-height: 1.75; border-bottom: 1px dashed var(--rule); }
+.doc mark { color: inherit; padding: 1px 3px; border-radius: 2px; background-repeat: no-repeat; background-size: 100% 100%; animation: sweep .7s ease-out both; }
+.doc mark.a { background-image: linear-gradient(var(--mark-a), var(--mark-a)); animation-delay: .3s; }
+.doc mark.b { background-image: linear-gradient(var(--mark-b), var(--mark-b)); animation-delay: .8s; }
+.doc mark.c { background-image: linear-gradient(var(--mark-c), var(--mark-c)); animation-delay: 1.3s; }
+@keyframes sweep { from { background-size: 0% 100%; } to { background-size: 100% 100%; } }
+@media (prefers-reduced-motion: reduce) { .doc mark { animation: none; } html { scroll-behavior: auto; } }
+.fields { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.fields th { text-align: left; padding: 9px 16px; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.fields td { padding: 8px 16px; border-top: 1px solid var(--rule); vertical-align: top; }
+.fields td:last-child { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.chip { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 8px; }
+.chip.a { background: var(--mark-a); } .chip.b { background: var(--mark-b); } .chip.c { background: var(--mark-c); }
+.sheet-foot { padding: 9px 16px; border-top: 1px solid var(--rule); }
+
+/* Números */
+.facts { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.facts .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.fact { padding: 26px 20px 24px 0; }
+.fact + .fact { padding-left: 20px; border-left: 1px solid var(--rule); }
+.fact b { display: block; font-family: var(--display); font-stretch: 118%; font-weight: 800; font-size: 2.1rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.fact span { display: block; margin-top: 8px; font-size: .93rem; color: var(--muted); }
+
+section { padding: 72px 0; }
+.sec-head { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; margin-bottom: 36px; align-items: baseline; }
+.sec-head p { margin-top: 12px; color: var(--muted); max-width: 40em; }
+
+/* Serviços */
+.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--ink); }
+.service { padding: 26px 28px 28px 0; border-bottom: 1px solid var(--rule); }
+.service:nth-child(even) { padding-left: 28px; border-left: 1px solid var(--rule); }
+.service p { margin-top: 10px; color: var(--muted); }
+
+/* Projetos */
+.cases { background: var(--surface); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.case { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding: 28px 0; border-top: 1px solid var(--rule); }
+.case:first-of-type { border-top: 1px solid var(--ink); }
+.case p { margin-top: 10px; max-width: 46em; }
+.case ul { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.case li { font-family: var(--mono); font-size: 12px; padding: 4px 9px; border: 1px solid var(--rule); border-radius: 3px; color: var(--muted); }
+.case .result { margin-top: 12px; font-weight: 500; }
+
+/* Stack e sobre */
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.cols h3 { padding-bottom: 10px; border-bottom: 1px solid var(--ink); }
+.cols ul { margin: 14px 0 0; padding: 0; list-style: none; }
+.cols li { padding: 7px 0; border-bottom: 1px solid var(--rule); font-size: .97rem; }
+.about { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+.about p + p { margin-top: 16px; }
+.about .text { max-width: 44em; }
+
+/* Contato */
+.contact { background: var(--ink); color: var(--paper); }
+.contact .label { color: var(--paper); opacity: .7; }
+.contact h2 { max-width: 16em; margin-top: 14px; }
+.contact .mail { display: inline-block; margin-top: 26px; font-family: var(--mono); font-size: clamp(1.05rem, 2.6vw, 1.5rem); color: var(--paper); overflow-wrap: anywhere; }
+.contact p { margin-top: 16px; opacity: .8; max-width: 38em; }
+
+footer { padding: 28px 0 40px; font-size: .88rem; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero { padding: 40px 0; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .facts .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fact:nth-child(3) { padding-left: 0; border-left: 0; }
+  .fact:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .sec-head, .case, .about { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .services, .cols { grid-template-columns: minmax(0, 1fr); }
+  .service:nth-child(even) { padding-left: 0; border-left: 0; }
+  section { padding: 52px 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">ATIVA<span>RM</span></a>
+    <nav aria-label="Seções">
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#tecnologias">Tecnologias</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="label">Consultoria · Desenvolvimento · Infraestrutura</p>
+        <h1 style="margin-top:16px">Seu sistema legado não precisa ser reescrito para ganhar IA.</h1>
+        <p class="lead">A Ativa RM coloca inteligência artificial generativa para trabalhar dentro de sistemas corporativos que já estão em produção: lendo documentos, classificando arquivos, importando dados e conferindo o próprio resultado.</p>
+        <div class="actions">
+          <a class="btn" href="#contato">Falar sobre o seu sistema</a>
+          <a class="btn ghost" href="#projetos">Ver projetos entregues</a>
+        </div>
+      </div>
+
+      <div class="sheet" aria-label="Exemplo ilustrativo de extração de dados de um contrato">
+        <div class="sheet-head">
+          <span class="label">contrato.pdf · pág. 2</span>
+          <span class="label">extração com IA</span>
+        </div>
+        <div class="doc">
+          Pelo presente instrumento, <mark class="a">Empresa Exemplo Ltda.</mark>, na qualidade de devedora, reconhece o saldo de <mark class="b">R$ 48.310,27</mark> referente ao contrato nº 2024/0187, com vencimento da próxima parcela em <mark class="c">15/03/2025</mark>, nos termos das cláusulas seguintes.
+        </div>
+        <table class="fields">
+          <thead><tr><th>Campo</th><th>Valor extraído</th><th>Origem</th></tr></thead>
+          <tbody>
+            <tr><td><span class="chip a"></span>Devedor</td><td>Empresa Exemplo Ltda.</td><td>p. 2</td></tr>
+            <tr><td><span class="chip b"></span>Saldo devedor</td><td>R$ 48.310,27</td><td>p. 2</td></tr>
+            <tr><td><span class="chip c"></span>Vencimento</td><td>15/03/2025</td><td>p. 2</td></tr>
+          </tbody>
+        </table>
+        <div class="sheet-foot"><span class="label">Dados fictícios. Cada campo aponta o trecho de onde saiu.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="wrap">
+      <div class="fact"><b>30+</b><span>anos de experiência em sistemas corporativos</span></div>
+      <div class="fact"><b>2013</b><span>ano de fundação da empresa, em Brasília</span></div>
+      <div class="fact"><b>~60</b><span>usuários diários na plataforma mantida hoje</span></div>
+      <div class="fact"><b>US$ 0,08</b><span>custo médio de IA por documento importado</span></div>
+    </div>
+  </div>
+
+  <section id="servicos">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">01 · Serviços</p>
+        <div>
+          <h2>O que a Ativa RM faz</h2>
+          <p>Atendimento direto com quem projeta e escreve o código, do banco de dados à infraestrutura.</p>
+        </div>
+      </div>
+      <div class="services">
+        <div class="service">
+          <h3>IA generativa em sistemas existentes</h3>
+          <p>Integração da API do Claude a aplicações já em uso: extração de dados de documentos, classificação, apoio à redação e análise de contratos, com registro de custo e de uso por chamada.</p>
+        </div>
+        <div class="service">
+          <h3>Desenvolvimento e modernização</h3>
+          <p>Evolução de sistemas em Delphi e C#/.NET com SQL Server, e novos serviços em Python/FastAPI. O sistema antigo continua funcionando enquanto ganha recursos novos. Inclui relatórios gerados a partir de consultas e automações como envio de emails e notificações.</p>
+        </div>
+        <div class="service">
+          <h3>Integrações</h3>
+          <p>Conexão com APIs bancárias, sistemas financeiros de terceiros, telefonia VoIP, atendimento via Chatwoot, notificações e assinatura digital ICP-Brasil.</p>
+        </div>
+        <div class="service">
+          <h3>Infraestrutura</h3>
+          <p>Serviços em Docker sobre Linux, migração de ambientes Windows, banco de dados, desempenho de consultas e segurança da informação.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="cases">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">02 · Projetos</p>
+        <div>
+          <h2>IA em produção, dentro de um sistema real</h2>
+          <p>A maior parte dos projetos abaixo foi construída no SGI, uma plataforma de gestão imobiliária e de processos jurídicos usada todos os dias. O último é a modernização de outro sistema, do setor de cartórios. Nomes de clientes e de instituições foram omitidos.</p>
+        </div>
+      </div>
+
+      <article class="case">
+        <p class="label">Extração</p>
+        <div>
+          <h3>Leitura de contratos e documentos em PDF</h3>
+          <p>A IA lê o documento e preenche o cadastro: partes envolvidas, múltiplos endereços, valores e datas. O usuário revisa em vez de digitar.</p>
+          <ul><li>Claude API</li><li>Delphi</li><li>SQL Server</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Conferência</p>
+        <div>
+          <h3>Marcação automática do trecho de origem no PDF</h3>
+          <p>Cada campo extraído volta marcado no documento original, com página e posição. Funciona também em PDFs digitalizados, com OCR e busca aproximada de texto.</p>
+          <p class="result">Quem confere vê de onde cada valor saiu, sem procurar no documento.</p>
+          <ul><li>Python/FastAPI</li><li>PyMuPDF</li><li>Tesseract OCR</li><li>Docker</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Importação</p>
+        <div>
+          <h3>Robô de importação de planilhas de débito</h3>
+          <p>Extratos de consórcio e de financiamento chegam em PDF, cada credor com um layout. A IA extrai parcelas vencidas e a projeção de pagamento em formato estruturado, e o sistema grava direto nas prestações. PDFs com camada de texto ilegível são lidos como imagem.</p>
+          <p class="result">Custo médio de cerca de US$ 0,08 por documento.</p>
+          <ul><li>Claude API</li><li>Prompts versionados em banco</li><li>Delphi</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Classificação</p>
+        <div>
+          <h3>Classificação automática de documentos</h3>
+          <p>Arquivos recebidos são identificados por tipo com um dicionário de regras e limite mínimo de confiança. Três modos de operação: automático, semiautomático e somente relatório.</p>
+          <ul><li>Claude API</li><li>Regras em SQL</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Planilhas</p>
+        <div>
+          <h3>Importação de Excel com mapeamento dinâmico</h3>
+          <p>O mapeamento de colunas fica em banco e se ajusta a cada planilha. O sistema localiza os documentos pelo número do contrato, converte para PDF, classifica com IA e anexa ao processo.</p>
+          <ul><li>Delphi</li><li>Automação de documentos</li><li>Claude API</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Redação</p>
+        <div>
+          <h3>Corretor de textos e analisador de contratos</h3>
+          <p>Ferramenta acionada por atalho de teclado em qualquer tela, com correção ortográfica e análise de contratos. Os prompts são administrados pela própria equipe, sem alterar o programa.</p>
+          <ul><li>Claude API</li><li>Gestão de prompts</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Dados</p>
+        <div>
+          <h3>Parametrização por autoaprendizado e detecção de anomalias</h3>
+          <p>O sistema sugere parâmetros faltantes a partir do histórico e aponta valores fora do padrão por análise estatística. Duplicidades de arquivos são detectadas por comparação de hash SHA-256.</p>
+          <p class="result">Uma análise em lote que levava 1 min 32 s passou a rodar em 12 s.</p>
+          <ul><li>SQL Server</li><li>Estatística (IQR)</li><li>SHA-256</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Base</p>
+        <div>
+          <h3>Camada única de integração com IA</h3>
+          <p>Todas as chamadas passam por um componente que registra uso e custo, detecta respostas cortadas e trata o retorno antes de chegar à tela. É o que permite acrescentar novos usos de IA com segurança.</p>
+          <ul><li>Claude API</li><li>Log de uso e custo</li><li>Processamento em segundo plano</li></ul>
+        </div>
+      </article>
+
+      <article class="case">
+        <p class="label">Modernização</p>
+        <div>
+          <h3>Atualização da plataforma de um fundo do setor de cartórios</h3>
+          <p>API e sistema web de um fundo ligado a cartórios de registro, atualizados com foco em segurança: credenciais expostas no código foram removidas, o código fora de escopo foi enxugado e o front-end foi refeito em tecnologia atual, com telas de pagamentos, pagadores, beneficiários, cálculo do fundo, controle de acesso e relatórios.</p>
+          <p class="result">3.311 arquivos migrados, cerca de 70 mil linhas de código obsoleto removidas e migração de dados executada em 14 cartórios, com proteção contra duplicidade.</p>
+          <ul><li>Segurança da informação</li><li>Migração de banco de dados</li><li>Novo front-end</li><li>API</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="tecnologias">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label">03 · Tecnologias</p>
+        <div><h2>Ferramentas de trabalho</h2></div>
+      </div>
+      <div class="cols">
+        <div>
+          <h3>Aplicação</h3>
+          <ul><li>Delphi (RAD Studio 12/13)</li><li>C# e .NET</li><li>Python e FastAPI</li><li>Claude API (Anthropic)</li></ul>
+        </div>
+        <div>
+          <h3>Dados</h3>
+          <ul><li>Microsoft SQL Server</li><li>Stored procedures e desempenho</li><li>Auditoria e rastreabilidade</li><li>OCR e processamento de PDF</li></ul>
+        </div>
+        <div>
+          <h3>Infraestrutura</h3>
+          <ul><li>Docker</li><li>Linux</li><li>APIs REST e integrações</li><li>Segurança da informação</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" style="padding-top:0">
+    <div class="wrap about">
+      <p class="label">04 · Sobre</p>
+      <div class="text">
+        <h2>Quem está por trás</h2>
+        <p style="margin-top:18px">A Ativa RM é a empresa de Romilson Pereira Cardoso, engenheiro de software com mais de 30 anos de experiência em sistemas corporativos, pós-graduado em Engenharia de Software e com formação em Segurança da Informação.</p>
+        <p>O trabalho é feito de ponta a ponta pela mesma pessoa: arquitetura, código, banco de dados, integrações e infraestrutura. Isso encurta a distância entre o problema do negócio e a solução em produção.</p>
+        <p><a href="https://www.linkedin.com/in/romilson-pereira-cardoso-46569431/">Perfil no LinkedIn</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="wrap">
+      <p class="label">05 · Contato</p>
+      <h2>Tem um sistema antigo e quer saber por onde a IA entra?</h2>
+      <a class="mail" href="mailto:romilsonpc@ativarm.com.br">romilsonpc@ativarm.com.br</a>
+      <p>Escreva contando o que o sistema faz hoje e onde o trabalho manual pesa mais. A resposta vem com uma avaliação inicial, sem compromisso.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Ativa RM Tecnologia da Informação · Romilson Pereira Cardoso · CNPJ 19.012.847/0001-14</span>
+    <span>Brasília/DF · ativarm.com.br</span>
+  </div>
+</footer>
+
+</body>
+</html>
